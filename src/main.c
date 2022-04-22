@@ -20,21 +20,9 @@
 
 int main(void)
 {
-
-    bool game_should_run = true;
-
     if (Init_Game())
     {
-        debug("Run_Game");
-
-        #ifdef __EMSCRIPTEN__
-        emscripten_set_main_loop(Run_Game, 0, true);
-        #else
-        while (game_should_run)
-        {
-            Run_Game();
-        }
-        #endif
+        Run_Game();
     }
     atexit(End_Game);
     return 0;

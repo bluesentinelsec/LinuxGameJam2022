@@ -66,36 +66,35 @@ error:
 
 void Run_Game(void)
 {
-
-    // handle event loop
-    SDL_Event event;
-    while (SDL_PollEvent(&event))
+    debug("Run_Game");
+    bool game_should_run = true;
+    while (game_should_run)
     {
-        switch (event.type)
+        // handle event loop
+        SDL_Event event;
+        while (SDL_PollEvent(&event))
         {
-        case SDL_QUIT:
-            exit(0);
-            break;
-        case SDL_KEYUP:
-            if (event.key.keysym.sym == SDLK_ESCAPE)
+            switch (event.type)
             {
-                exit(0);
+            case SDL_QUIT:
+                game_should_run = false;
+                break;
+            case SDL_KEYUP:
+                if (event.key.keysym.sym == SDLK_ESCAPE)
+                {
+                    game_should_run = false;
+                }
+                break;
+            default:
+                break;
             }
-            break;
-        default:
-            break;
         }
-#ifdef __EMSCRIPTEN__
-        emscripten_sleep(0);
-#endif
+
+        // draw screen
+        SDL_SetRenderDrawColor(game_window->renderer_p, 0x00, 0x00, 0x00, 0xFF);
+        SDL_RenderClear(game_window->renderer_p);
+        SDL_RenderPresent(game_window->renderer_p);
     }
-
-    // draw screen
-    SDL_SetRenderDrawColor(game_window->renderer_p, 0x00, 0x80, 0x00, 0xFF);
-    SDL_RenderClear(game_window->renderer_p);
-    SDL_RenderPresent(game_window->renderer_p);
-
-    return;
 }
 
 void End_Game(void)

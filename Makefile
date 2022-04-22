@@ -1,5 +1,5 @@
 CC = gcc
-FLAGS = -pedantic -Wall -Wextra -g -pg
+FLAGS = -pedantic -Wall -Wextra
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 EXE = liberty_space_battle
 
@@ -7,7 +7,11 @@ SOURCES = 	src/main.c \
 			src/game.c
 
 linux_debug:
-	$(CC) -o $(EXE) $(FLAGS) $(SOURCES) $(LIBS)
+	$(CC) -o $(EXE) $(FLAGS) -g $(SOURCES) $(LIBS)
+
+
+linux_release:
+	$(CC) -o $(EXE) $(FLAGS) -O2 $(SOURCES) $(LIBS)
 
 
 profile:
@@ -15,11 +19,9 @@ profile:
 	./$(EXE)
 	gprof $(EXE) gmon.out > profile.txt
 
-web:
-	emcc -s USE_SDL=2 -o web/index.html -s ASYNCIFY $(SOURCES)
 
 clean:
 	rm -f $(EXE) 2>/dev/null; true
 	rm gmon.out profile.txt 2>/dev/null; true
 
-.PHONY: web clean
+.PHONY: clean
