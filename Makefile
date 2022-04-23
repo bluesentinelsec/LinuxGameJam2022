@@ -1,10 +1,13 @@
-CC = gcc
-FLAGS = -pedantic -Wall -Wextra
-LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+CC = clang
+FLAGS = -Wall -Wextra -Werror -ferror-limit=1
+LIBS = `pkg-config sdl2 SDL2_image SDL2_ttf SDL2_mixer SDL2_gfx --libs --cflags`
 EXE = liberty_space_battle
 
 SOURCES = 	src/main.c \
 			src/game.c
+
+mac:
+	$(CC) -o $(EXE) $(SOURCES) $(FLAGS) $(LIBS)
 
 linux_debug:
 	$(CC) -o $(EXE) $(FLAGS) -g $(SOURCES) $(LIBS)

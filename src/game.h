@@ -16,20 +16,19 @@
 
 #pragma once
 
-#ifdef __EMSCRIPTEN__
-#include <emscripten.h>
-#include <emscripten/html5.h>
-#endif
-
-// Internal dependencies
-#include "dbg.h"
-
 // standard library
 #include <stdbool.h>
 #include <stdlib.h>
 
+// Internal dependencies
+#include "dbg.h"
+
 // External dependencies
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
 
 // primary game engine functions
 bool Init_Game(void);

@@ -35,16 +35,24 @@ bool Init_Game(void)
 
     // create game window object with Commodore 64 resolution
     char *game_title = "Liberty Space Battle";
-    int width = 320;
+    const int width = 320;
     int height = 200;
     bool fullscreen = false;
     game_window = create_window(game_title, width, height, fullscreen);
 
     // initialize SDL subsystems
-    // ToDo: add image, mixer, ttx, etc.
     int rc = 0;
     rc = SDL_Init(SDL_INIT_EVERYTHING);
     check(rc == 0, "Unable to initialize SDL2");
+
+    rc = IMG_Init(IMG_INIT_PNG);
+    check(rc != 0, "Unable to initialize SDL2_Image");
+
+    rc = Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 2048);
+    check(rc == 0, "Unable to open audio device");
+
+    rc = TTF_Init();
+    check(rc == 0, "Unable to initialize SDL_TTF");
 
     // create SDL window
     game_window->window_p = create_SDL_window(game_window);
@@ -55,12 +63,14 @@ bool Init_Game(void)
     game_window->renderer_p = SDL_CreateRenderer(game_window->window_p,
                                                  auto_select_rendering_driver,
                                                  SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+                                                 
     check(game_window->renderer_p != NULL, "Unable to create SDL renderer: %s", SDL_GetError());
 
     return true;
 
 error:
     log_err("Unable to launch game. Check that you have SDL2 runtime libraries installed. More info available here: https://www.libsdl.org/download-2.0.php");
+    log_err("Also check that you have runtime libraries for: SDL2_image SDL2_ttf SDL2_mixer SDL2_gfx");
     return false;
 }
 
@@ -100,6 +110,9 @@ void Run_Game(void)
 void End_Game(void)
 {
     debug("End_Game");
+    TTF_Quit();
+    Mix_CloseAudio();
+    IMG_Quit();
     SDL_DestroyRenderer(game_window->renderer_p);
     SDL_DestroyWindow(game_window->window_p);
     destroy_window(game_window);
