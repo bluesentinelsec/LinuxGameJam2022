@@ -36,9 +36,9 @@ bool Init_Game(void)
 
     // create game window object with Commodore 64 resolution
     char *game_title = "Liberty Space Battle";
-    const int width = 320;
-    int height = 200;
-    bool fullscreen = false;
+    const int width = 1920;
+    int height = 1080;
+    bool fullscreen = true;
     game_window = create_window(game_title, width, height, fullscreen);
 
     // initialize SDL subsystems

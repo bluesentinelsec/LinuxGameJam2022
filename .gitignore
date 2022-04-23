@@ -17,21 +17,21 @@
 *.pch
 
 # Libraries
-*.lib
-*.a
+#*.lib
+#*.a
 *.la
 *.lo
 
 # Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+#*.dll
+#*.so
+#*.so.*
+#*.dylib
 
 # Executables
-*.exe
+#*.exe
 *.out
-*.app
+#*.app
 *.i*86
 *.x86_64
 *.hex
@@ -50,3 +50,5 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+.DS_Store

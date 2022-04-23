@@ -44,11 +44,11 @@ Disable the enemy spaceship and deflect the bomb into the enemy base to win.
 
 ## ToDo List
 
-1. Setup window and renderer
+1. [x] Setup window and renderer
 2. Setup input system
 3. Setup placeholder art
-4. Setup scene node
-5. Setup scene manager
+4. [x] Setup scene node
+5. [x] Setup scene manager
 6. Setup game entity
 7. Setup entity manager
 8. Implement player entity
@@ -59,3 +59,16 @@ Disable the enemy spaceship and deflect the bomb into the enemy base to win.
 13. Implement sound and music
 14. Implement different game screens
 15. Upload to Itch, work on game page
+
+## Splash Screen Message
+
+This software respects your liberty
+
+No microtransactions
+No data collection
+No advertisements
+No DRM
+
+You may use this software however you wish
+You may read and change the source code
+You may share your changes with anyone

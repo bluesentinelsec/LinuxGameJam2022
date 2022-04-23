@@ -1,3 +1,19 @@
+/*
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+    Written by Michael Long <bluesentinel@protonmail.com>
+    Copyright (C) 2022 Blue Sentinel Security LLC
+*/
+
 #include "splash_screen.h"
 
 SDL_Surface *background_surface;
@@ -14,8 +30,9 @@ void init_splash_screen(void)
     background_texture = SDL_CreateTextureFromSurface(Get_Renderer(), background_surface);
     check_mem(background_texture);
 
-    // create game objects
-    // set object positions
+    // initialize each game entity
+    // add each game entity to an array
+    // load and start music
     return;
 error:
     log_err("unable to initialize splash screen");
@@ -24,8 +41,13 @@ error:
 
 void update_splash_screen(void)
 {
-    // check input
-    // update objects/logic in this scene
+    // if enter key is released or left mouse is clicked
+        // quit this scene
+        // set next scene: instructions
+
+    // if hyperlink is clicked
+        // open browser to github page
+
     return;
 }
 
