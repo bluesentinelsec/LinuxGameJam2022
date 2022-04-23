@@ -22,6 +22,7 @@
 
 // Internal dependencies
 #include "dbg.h"
+#include "sceneManager.h"
 
 // External dependencies
 #include <SDL2/SDL.h>
@@ -39,3 +40,5 @@ void End_Game(void);
 struct GameWindow *create_window(char *window_title, int window_width, int window_height, bool is_fullscreen);
 void destroy_window(struct GameWindow *game_window);
 SDL_Window *create_SDL_window(struct GameWindow *game_window);
+void process_event_loop(void);
+void draw_sceen(void);

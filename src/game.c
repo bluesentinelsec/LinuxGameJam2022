@@ -26,8 +26,9 @@ struct GameWindow
     SDL_Renderer *renderer_p;
 };
 
-// give game window file scope
+// global variables
 struct GameWindow *game_window;
+bool game_should_run = true;
 
 bool Init_Game(void)
 {
@@ -63,8 +64,10 @@ bool Init_Game(void)
     game_window->renderer_p = SDL_CreateRenderer(game_window->window_p,
                                                  auto_select_rendering_driver,
                                                  SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-                                                 
+
     check(game_window->renderer_p != NULL, "Unable to create SDL renderer: %s", SDL_GetError());
+
+    Init_Scene_Manager();
 
     return true;
 
@@ -77,39 +80,51 @@ error:
 void Run_Game(void)
 {
     debug("Run_Game");
-    bool game_should_run = true;
     while (game_should_run)
     {
-        // handle event loop
-        SDL_Event event;
-        while (SDL_PollEvent(&event))
-        {
-            switch (event.type)
-            {
-            case SDL_QUIT:
-                game_should_run = false;
-                break;
-            case SDL_KEYUP:
-                if (event.key.keysym.sym == SDLK_ESCAPE)
-                {
-                    game_should_run = false;
-                }
-                break;
-            default:
-                break;
-            }
-        }
+        // ToDo: get player input
 
-        // draw screen
-        SDL_SetRenderDrawColor(game_window->renderer_p, 0x00, 0x00, 0x00, 0xFF);
-        SDL_RenderClear(game_window->renderer_p);
-        SDL_RenderPresent(game_window->renderer_p);
+        process_event_loop();
+
+        Update_Scene_Manager();
+
+        draw_sceen();
     }
+}
+
+void process_event_loop(void)
+{
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        switch (event.type)
+        {
+        case SDL_QUIT:
+            game_should_run = false;
+            break;
+        case SDL_KEYUP:
+            if (event.key.keysym.sym == SDLK_ESCAPE)
+            {
+                game_should_run = false;
+            }
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+void draw_sceen(void)
+{
+    SDL_SetRenderDrawColor(game_window->renderer_p, 0x00, 0x00, 0x00, 0xFF);
+    SDL_RenderClear(game_window->renderer_p);
+    SDL_RenderPresent(game_window->renderer_p);
 }
 
 void End_Game(void)
 {
     debug("End_Game");
+    Quit_Scene_Manager();
     TTF_Quit();
     Mix_CloseAudio();
     IMG_Quit();

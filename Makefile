@@ -4,7 +4,8 @@ LIBS = `pkg-config sdl2 SDL2_image SDL2_ttf SDL2_mixer SDL2_gfx --libs --cflags`
 EXE = liberty_space_battle
 
 SOURCES = 	src/main.c \
-			src/game.c
+			src/game.c\
+			src/sceneManager.c
 
 mac:
 	$(CC) -o $(EXE) $(SOURCES) $(FLAGS) $(LIBS)
