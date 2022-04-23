@@ -22,8 +22,8 @@ Disable the enemy spaceship and deflect the bomb into the enemy base to win.
 
 1. Splash screen
 2. Title screen
-3. Game screen
-4. How to play screen
+3. How to play screen
+4. Game screen
 5. You win screen
 6. You lose screen
 7. Credits screen

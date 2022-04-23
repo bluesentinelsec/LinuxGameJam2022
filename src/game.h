@@ -35,6 +35,7 @@
 bool Init_Game(void);
 void Run_Game(void);
 void End_Game(void);
+SDL_Renderer *Get_Renderer(void);
 
 // helper functions
 struct GameWindow *create_window(char *window_title, int window_width, int window_height, bool is_fullscreen);

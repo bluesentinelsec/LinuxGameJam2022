@@ -5,7 +5,8 @@ EXE = liberty_space_battle
 
 SOURCES = 	src/main.c \
 			src/game.c\
-			src/sceneManager.c
+			src/sceneManager.c\
+			src/splash_screen.c
 
 mac:
 	$(CC) -o $(EXE) $(SOURCES) $(FLAGS) $(LIBS)

@@ -118,6 +118,7 @@ void draw_sceen(void)
 {
     SDL_SetRenderDrawColor(game_window->renderer_p, 0x00, 0x00, 0x00, 0xFF);
     SDL_RenderClear(game_window->renderer_p);
+    Draw_Current_Scene();
     SDL_RenderPresent(game_window->renderer_p);
 }
 
@@ -182,4 +183,9 @@ SDL_Window *create_SDL_window(struct GameWindow *game_window)
     }
     SDL_ShowCursor(SDL_DISABLE);
     return sdl_window;
+}
+
+SDL_Renderer *Get_Renderer(void)
+{
+    return game_window->renderer_p;
 }
