@@ -82,7 +82,6 @@ void Run_Game(void)
     debug("Run_Game");
     while (game_should_run)
     {
-        // ToDo: get player input
 
         process_event_loop();
 
@@ -97,20 +96,7 @@ void process_event_loop(void)
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
-        switch (event.type)
-        {
-        case SDL_QUIT:
-            game_should_run = false;
-            break;
-        case SDL_KEYUP:
-            if (event.key.keysym.sym == SDLK_ESCAPE)
-            {
-                game_should_run = false;
-            }
-            break;
-        default:
-            break;
-        }
+        check_keyboard_input(&event);
     }
 }
 

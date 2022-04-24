@@ -18,29 +18,14 @@
 
 // standard library
 #include <stdbool.h>
-#include <stdlib.h>
 
 // Internal dependencies
 #include "dbg.h"
-#include "sceneManager.h"
-#include "input.h"
+#include "game.h"
 
 // External dependencies
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL2_gfxPrimitives.h>
 
-// primary game engine functions
-bool Init_Game(void);
-void Run_Game(void);
-void End_Game(void);
-SDL_Renderer *Get_Renderer(void);
-
-// helper functions
-struct GameWindow *create_window(char *window_title, int window_width, int window_height, bool is_fullscreen);
-void destroy_window(struct GameWindow *game_window);
-SDL_Window *create_SDL_window(struct GameWindow *game_window);
-void process_event_loop(void);
-void draw_sceen(void);
+void check_keyboard_input(SDL_Event *event);
+bool is_up_pressed(void);
+bool is_down_pressed(void);

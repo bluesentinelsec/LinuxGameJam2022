@@ -45,7 +45,7 @@ Disable the enemy spaceship and deflect the bomb into the enemy base to win.
 ## ToDo List
 
 1. [x] Setup window and renderer
-2. Setup input system
+2. [x] Setup input system
 3. Setup placeholder art
 4. [x] Setup scene node
 5. [x] Setup scene manager
