@@ -46,10 +46,10 @@ Disable the enemy spaceship and deflect the bomb into the enemy base to win.
 
 1. [x] Setup window and renderer
 2. [x] Setup input system
-3. Setup placeholder art
+3. [WIP] Setup placeholder art
 4. [x] Setup scene node
 5. [x] Setup scene manager
-6. Setup game entity
+6. [WIP] Setup game entity
 7. Setup entity manager
 8. Implement player entity
 9. Implement bomb entity

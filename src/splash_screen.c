@@ -16,26 +16,19 @@
 
 #include "splash_screen.h"
 
-SDL_Surface *background_surface;
-SDL_Texture *background_texture;
+Entity_T *background;
+
+int BACKGROUND_ID = 0;
 
 void init_splash_screen(void)
 {
-    // load graphics
-    background_surface = NULL;
-    background_texture = NULL;
-    background_surface = IMG_Load("media/images/splash_screen_background.png");
-    check_mem(background_surface);
+    char *img = "media/images/splash_screen_background.png";
+    int xPos = 0;
+    int yPos = 0;
+    bool isActive = true;
+    background = Create_Entity(BACKGROUND_ID, img, xPos, yPos, isActive);
 
-    background_texture = SDL_CreateTextureFromSurface(Get_Renderer(), background_surface);
-    check_mem(background_texture);
-
-    // initialize each game entity
-    // add each game entity to an array
-    // load and start music
-    return;
-error:
-    log_err("unable to initialize splash screen");
+    // ToDo: add each game entity to a dynamic array
     return;
 }
 
@@ -45,17 +38,14 @@ void update_splash_screen(void)
         // quit this scene
         // set next scene: instructions
 
-    // if hyperlink is clicked
-        // open browser to github page
-
     return;
 }
 
 void draw_splash_screen_scene(void)
 {
     // for each object in scene
-        // draw object
-    SDL_RenderCopy(Get_Renderer(), background_texture, NULL, NULL);
+        // draw object    
+    SDL_RenderCopy(Get_Renderer(), background->texture, NULL, NULL);
     return;
 }
 
@@ -64,8 +54,6 @@ void quit_splash_screen(void)
     // clear object positions
     // free game objects
     // free graphics
-    SDL_DestroyTexture(background_texture);
-    SDL_FreeSurface(background_surface);
-    background_surface = NULL;
+    Free_Entity(background);
     return;
 }

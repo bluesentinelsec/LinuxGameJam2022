@@ -28,6 +28,7 @@ int current_scene = 0;
 
 void Init_Scene_Manager(void)
 {
+    // ToDo: preload music
     Set_Current_Scene(SCENE_SPLASH_SCREEN);
     Init_Scene(Get_Current_Scene());
     return;
@@ -36,16 +37,11 @@ void Init_Scene_Manager(void)
 void Update_Scene_Manager(void)
 {
     // update the current scene
-    switch (current_scene)
+    int current_scene = Get_Current_Scene();
+    if (current_scene == SCENE_SPLASH_SCREEN)
     {
-    case SCENE_SPLASH_SCREEN:
         update_splash_screen();
-        break;
-
-    default:
-        log_err("trying to update invalid scene");
-        break;
-    };
+    }
     return;
 }
 
@@ -58,47 +54,33 @@ void Quit_Scene_Manager(void)
 void Init_Scene(int scene)
 {
     debug("Initializing scene: %d", scene);
-    switch (scene)
+    int current_scene = Get_Current_Scene();
+    if (current_scene == SCENE_SPLASH_SCREEN)
     {
-    case SCENE_SPLASH_SCREEN:
         init_splash_screen();
-        break;
-
-    default:
-        log_err("trying to initialize invalid scene");
-        break;
-    };
+    }
     return;
 }
 
 void Quit_Current_Scene(void)
 {
     // quit the specified scene
-    switch (Get_Current_Scene())
+    int current_scene = Get_Current_Scene();
+    if (current_scene == SCENE_SPLASH_SCREEN)
     {
-    case SCENE_SPLASH_SCREEN:
         quit_splash_screen();
-        break;
-
-    default:
-        log_err("trying to quit invalid scene");
-        break;
-    };
+    }
     return;
 }
 
 void Draw_Current_Scene(void)
 {
-    switch (Get_Current_Scene())
-    {
-    case SCENE_SPLASH_SCREEN:
-        draw_splash_screen_scene();
-        break;
+    int current_scene = Get_Current_Scene();
 
-    default:
-        log_err("trying to quit invalid scene");
-        break;
-    };
+    if (current_scene == SCENE_SPLASH_SCREEN)
+    {
+        draw_splash_screen_scene();
+    }
     return;
 }
 

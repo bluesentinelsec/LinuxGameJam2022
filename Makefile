@@ -7,7 +7,8 @@ SOURCES = 	src/main.c \
 			src/game.c\
 			src/sceneManager.c\
 			src/splash_screen.c\
-			src/input.c
+			src/input.c\
+			src/entity.c
 
 mac:
 	$(CC) -o $(EXE) $(SOURCES) $(FLAGS) $(LIBS)
