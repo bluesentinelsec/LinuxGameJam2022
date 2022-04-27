@@ -27,6 +27,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+typedef void (*update_cb)(void);
+
 // todo - need to add a src and dst rect
 struct Entity
 {
@@ -36,11 +38,15 @@ struct Entity
     bool isActive;
     SDL_Surface *image;
     SDL_Texture *texture;
+    update_cb update_fp;
 };
 typedef struct Entity Entity_T;
 
+
 Entity_T *Create_Entity(int id, char *img, int xPos, int yPos, bool isActive);
 void Free_Entity(Entity_T *entity);
+void update(void);
+void Set_Entity_Update_Method(Entity_T *entity, update_cb update_fp);
 
 // ToDo:
 // enable entity
@@ -49,3 +55,5 @@ void Free_Entity(Entity_T *entity);
 // get entity y
 // set entity x
 // set entity y
+// get src rect
+// get dst rect

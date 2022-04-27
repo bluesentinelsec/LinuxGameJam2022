@@ -33,7 +33,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
-void init_splash_screen(void);
-void update_splash_screen(void);
-void quit_splash_screen(void);
-void draw_splash_screen_scene(void);
+void init_title_screen(void);
+void update_title_screen(void);
+void quit_title_screen(void);
+void draw_title_screen_scene(void);

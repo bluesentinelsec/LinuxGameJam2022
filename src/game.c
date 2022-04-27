@@ -15,6 +15,7 @@
 */
 
 #include "game.h"
+#include <SDL2/SDL_timer.h>
 
 struct GameWindow
 {
@@ -38,7 +39,7 @@ bool Init_Game(void)
     char *game_title = "Liberty Space Battle";
     const int width = 1920;
     int height = 1080;
-    bool fullscreen = false;
+    bool fullscreen = true;
     game_window = create_window(game_title, width, height, fullscreen);
 
     // initialize SDL subsystems
@@ -79,15 +80,25 @@ error:
 
 void Run_Game(void)
 {
+    int FPS = 30;
+    int frame_delay = 1000/FPS;
     debug("Run_Game");
     while (game_should_run)
     {
+        int frame_start = SDL_GetTicks();
 
         process_event_loop();
 
-        Update_Scene_Manager();
+        Update_Current_Scene();
 
         draw_sceen();
+
+        int frame_time = frame_start - SDL_GetTicks();
+        if (frame_time < frame_delay)
+        {
+            SDL_Delay(frame_delay - frame_time);
+        }
+
     }
 }
 

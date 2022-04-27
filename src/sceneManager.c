@@ -15,7 +15,10 @@
 */
 
 #include "sceneManager.h"
+#include "title_screen.h"
 
+// don't change these constants or everything will break
+// bad design and I don't have time to fix it :(
 const int SCENE_SPLASH_SCREEN = 1;
 const int SCENE_TITLE_SCREEN = 2;
 const int SCENE_INSTRUCTIONS_SCREEN = 3;
@@ -34,7 +37,7 @@ void Init_Scene_Manager(void)
     return;
 }
 
-void Update_Scene_Manager(void)
+void Update_Current_Scene(void)
 {
     // update the current scene
     int current_scene = Get_Current_Scene();
@@ -42,12 +45,19 @@ void Update_Scene_Manager(void)
     {
         update_splash_screen();
     }
+    else if (current_scene == SCENE_TITLE_SCREEN)
+    {
+        update_title_screen();
+    }
+    else
+    {
+        debug("not a valid scene");
+    }
     return;
 }
 
 void Quit_Scene_Manager(void)
 {
-    Quit_Current_Scene();
     return;
 }
 
@@ -59,16 +69,13 @@ void Init_Scene(int scene)
     {
         init_splash_screen();
     }
-    return;
-}
-
-void Quit_Current_Scene(void)
-{
-    // quit the specified scene
-    int current_scene = Get_Current_Scene();
-    if (current_scene == SCENE_SPLASH_SCREEN)
+    else if (current_scene == SCENE_TITLE_SCREEN)
     {
-        quit_splash_screen();
+        init_title_screen();
+    }
+    else
+    {
+        debug("not a valid scene");
     }
     return;
 }
@@ -80,6 +87,14 @@ void Draw_Current_Scene(void)
     if (current_scene == SCENE_SPLASH_SCREEN)
     {
         draw_splash_screen_scene();
+    }
+    else if (current_scene == SCENE_TITLE_SCREEN)
+    {
+        draw_title_screen_scene();
+    }
+    else
+    {
+        debug("not a valid scene");
     }
     return;
 }

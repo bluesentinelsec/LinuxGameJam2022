@@ -16,7 +16,6 @@
 
 #include "entity.h"
 
-
 Entity_T *Create_Entity(int id, char *img, int xPos, int yPos, bool isActive)
 {
     Entity_T *entity = malloc(sizeof(Entity_T) * 1);
@@ -33,6 +32,8 @@ Entity_T *Create_Entity(int id, char *img, int xPos, int yPos, bool isActive)
     entity->yPos = yPos;
     entity->isActive = isActive;
 
+    entity->update_fp = update;
+
     return entity;
 error:
     log_err("unable to create entity: %s", SDL_GetError());
@@ -46,4 +47,14 @@ void Free_Entity(Entity_T *entity)
     free(entity);
     entity = NULL;
     return;
+}
+
+void update(void)
+{
+    return;
+}
+
+void Set_Entity_Update_Method(Entity_T *entity, update_cb update_fp)
+{
+    entity->update_fp = update_fp;
 }
