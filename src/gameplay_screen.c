@@ -14,65 +14,66 @@
     Copyright (C) 2022 Blue Sentinel Security LLC
 */
 
-#include "title_screen.h"
+#include "gameplay_screen.h"
 
 // give entities file scope
-cvector_vector_type(Entity_T *) Titlescreen_Entities;
+cvector_vector_type(Entity_T *) Gameplay_Entities;
 
-Entity_T *titlescreen_entity;
-int titlescreen_id = 0;
+Entity_T *Background;
+int BackgroundID = 0;
 
-void init_title_screen(void)
+void init_gameplay_screen(void)
 {
-    debug("init_title_screen");
+    debug("init_instructions_screen");
+
     // create entity list to hold each entity in scene
-    Titlescreen_Entities = NULL;
+    debug("declaring Gameplay_Entities");
+    Gameplay_Entities = NULL;
 
     // create each individual entity
-    char *img = "media/images/title_screen.png";
+    debug("Background = Create_Entity(BackgroundID, img, xPos, yPos, isActive);");
+    char *img = "media/images/game_screen.png";
     int xPos = 0;
     int yPos = 0;
     bool isActive = true;
-    titlescreen_entity = Create_Entity(titlescreen_id, img, xPos, yPos, isActive);
-    // Set_Entity_Update_Method(splashscreen_entity, NULL);
+    Background = Create_Entity(BackgroundID, img, xPos, yPos, isActive);
 
     // add entities to list
-    cvector_push_back(Titlescreen_Entities, titlescreen_entity);
-    return;
+    debug("cvector_push_back(Gameplay_Entities, Background)");
+    cvector_push_back(Gameplay_Entities, Background);
     return;
 }
-void update_title_screen(void)
+
+void update_gameplay_screen(void)
 {
-    debug("update title screen");
+    // debug("update instructions screen");
     if (is_enter_pressed() == true)
     {
-        int instructions_screen = 3;
-        Set_Current_Scene(instructions_screen);
-        quit_splash_screen();
-        Init_Scene(instructions_screen);
+        // do stuff
     }
     return;
 }
 
-void draw_title_screen_scene(void)
+void draw_gameplay_screen(void)
 {
     // draw each entity in scene
     size_t i = 0;
-    for (i = 0; i < cvector_size(Titlescreen_Entities); i++)
+    for (i = 0; i < cvector_size(Gameplay_Entities); i++)
     {
-        SDL_RenderCopy(Get_Renderer(), Titlescreen_Entities[i]->texture, NULL, NULL);
+        SDL_RenderCopy(Get_Renderer(), Gameplay_Entities[i]->texture, NULL, NULL);
     }
     return;
 }
 
-void quit_title_screen(void)
+void quit_gameplay_screen(void)
 {
-    debug("quit_title_screen");
+    debug("quit_instructions_screen");
     size_t i = 0;
-    for (i = 0; i < cvector_size(Titlescreen_Entities); i++)
+    for (i = 0; i < cvector_size(Gameplay_Entities); i++)
     {
-        Free_Entity(Titlescreen_Entities[i]);
+        Free_Entity(Gameplay_Entities[i]);
     }
-    cvector_free(Titlescreen_Entities);
+
+    cvector_free(Gameplay_Entities);
     return;
 }

@@ -15,7 +15,6 @@
 */
 
 #include "game.h"
-#include <SDL2/SDL_timer.h>
 
 struct GameWindow
 {
@@ -39,7 +38,7 @@ bool Init_Game(void)
     char *game_title = "Liberty Space Battle";
     const int width = 1920;
     int height = 1080;
-    bool fullscreen = true;
+    bool fullscreen = false;
     game_window = create_window(game_title, width, height, fullscreen);
 
     // initialize SDL subsystems
@@ -52,9 +51,6 @@ bool Init_Game(void)
 
     rc = Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 2048);
     check(rc == 0, "Unable to open audio device");
-
-    rc = TTF_Init();
-    check(rc == 0, "Unable to initialize SDL_TTF");
 
     // create SDL window
     game_window->window_p = create_SDL_window(game_window);
@@ -74,7 +70,7 @@ bool Init_Game(void)
 
 error:
     log_err("Unable to launch game. Check that you have SDL2 runtime libraries installed. More info available here: https://www.libsdl.org/download-2.0.php");
-    log_err("Also check that you have runtime libraries for: SDL2_image SDL2_ttf SDL2_mixer SDL2_gfx");
+    log_err("Also check that you have runtime libraries for: SDL2_image SDL2_mixer SDL2_gfx");
     return false;
 }
 
@@ -123,7 +119,6 @@ void End_Game(void)
 {
     debug("End_Game");
     Quit_Scene_Manager();
-    TTF_Quit();
     Mix_CloseAudio();
     IMG_Quit();
     SDL_DestroyRenderer(game_window->renderer_p);

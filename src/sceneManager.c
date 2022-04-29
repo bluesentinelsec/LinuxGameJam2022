@@ -15,7 +15,9 @@
 */
 
 #include "sceneManager.h"
-#include "title_screen.h"
+#include "credits_screen.h"
+#include "lose_screen.h"
+#include "win_screen.h"
 
 // don't change these constants or everything will break
 // bad design and I don't have time to fix it :(
@@ -37,25 +39,6 @@ void Init_Scene_Manager(void)
     return;
 }
 
-void Update_Current_Scene(void)
-{
-    // update the current scene
-    int current_scene = Get_Current_Scene();
-    if (current_scene == SCENE_SPLASH_SCREEN)
-    {
-        update_splash_screen();
-    }
-    else if (current_scene == SCENE_TITLE_SCREEN)
-    {
-        update_title_screen();
-    }
-    else
-    {
-        debug("not a valid scene");
-    }
-    return;
-}
-
 void Quit_Scene_Manager(void)
 {
     return;
@@ -72,6 +55,65 @@ void Init_Scene(int scene)
     else if (current_scene == SCENE_TITLE_SCREEN)
     {
         init_title_screen();
+    }
+    else if (current_scene == SCENE_INSTRUCTIONS_SCREEN)
+    {
+        init_instructions_screen();
+    }
+    else if (current_scene == SCENE_GAME_SCREEN)
+    {
+        init_gameplay_screen();
+    }
+    else if (current_scene == SCENE_WIN_SCREEN)
+    {
+        init_win_screen();
+    }
+    else if (current_scene == SCENE_LOSE_SCREEN)
+    {
+        init_lose_screen();
+    }
+    else if (current_scene == SCENE_CREDITS_SCREEN)
+    {
+        init_credits_screen();
+    }
+    else
+    {
+        debug("not a valid scene");
+    }
+    return;
+}
+
+void Update_Current_Scene(void)
+{
+    // update the current scene
+    int current_scene = Get_Current_Scene();
+    if (current_scene == SCENE_SPLASH_SCREEN)
+    {
+        update_splash_screen();
+    }
+    else if (current_scene == SCENE_TITLE_SCREEN)
+    {
+        update_title_screen();
+    }
+    else if (current_scene == SCENE_INSTRUCTIONS_SCREEN)
+    {
+        update_instructions_screen();
+    }
+    else if (current_scene == SCENE_GAME_SCREEN)
+    {
+        update_gameplay_screen();
+    }
+    else if (current_scene == SCENE_WIN_SCREEN)
+    {
+        update_win_screen();
+    }
+    else if (current_scene == SCENE_LOSE_SCREEN)
+    {
+        update_lose_screen();
+    }
+    else if (current_scene == SCENE_CREDITS_SCREEN)
+    {
+        update_credits_screen();
     }
     else
     {
@@ -91,6 +133,26 @@ void Draw_Current_Scene(void)
     else if (current_scene == SCENE_TITLE_SCREEN)
     {
         draw_title_screen_scene();
+    }
+    else if (current_scene == SCENE_INSTRUCTIONS_SCREEN)
+    {
+        draw_instructions_screen();
+    }
+    else if (current_scene == SCENE_GAME_SCREEN)
+    {
+        draw_gameplay_screen();
+    }
+    else if (current_scene == SCENE_WIN_SCREEN)
+    {
+        draw_win_screen();
+    }
+    else if (current_scene == SCENE_LOSE_SCREEN)
+    {
+        draw_lose_screen();
+    }
+    else if (current_scene == SCENE_CREDITS_SCREEN)
+    {
+        draw_credits_screen();
     }
     else
     {

@@ -16,20 +16,24 @@
 
 #pragma once
 
+// standard library
+#include <stddef.h>
+
+// Internal dependencies
+#include "cvector.h"
 #include "dbg.h"
-#include "splash_screen.h"
-#include "title_screen.h"
-#include "instructions_screen.h"
-#include "gameplay_screen.h"
-#include "win_screen.h"
-#include "lose_screen.h"
-#include "credits_screen.h"
+#include "entity.h"
+#include "game.h"
+#include "input.h"
 
-void Init_Scene_Manager(void);
-void Update_Current_Scene(void);
-void Quit_Scene_Manager(void);
+// External dependencies
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
 
-int Get_Current_Scene(void);
-void Set_Current_Scene(int);
-void Init_Scene(int);
-void Draw_Current_Scene(void);
+void init_gameplay_screen(void);
+void update_gameplay_screen(void);
+void draw_gameplay_screen(void);
+void quit_gameplay_screen(void);

@@ -1,6 +1,6 @@
 CC = clang
 FLAGS = -Wall -Wextra -Werror -ferror-limit=1
-LIBS = `pkg-config sdl2 SDL2_image SDL2_ttf SDL2_mixer SDL2_gfx --libs --cflags`
+LIBS = `pkg-config sdl2 SDL2_image SDL2_mixer --libs --cflags`
 EXE = liberty_space_battle
 
 SOURCES = 	src/main.c \
@@ -9,7 +9,12 @@ SOURCES = 	src/main.c \
 			src/splash_screen.c \
 			src/input.c \
 			src/entity.c \
-			src/title_screen.c
+			src/title_screen.c \
+			src/instructions_screen.c \
+			src/gameplay_screen.c \
+			src/credits_screen.c \
+			src/lose_screen.c \
+			src/win_screen.c
 
 mac:
 	$(CC) -o $(EXE) $(SOURCES) $(FLAGS) $(LIBS)
