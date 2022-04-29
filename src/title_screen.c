@@ -39,16 +39,14 @@ void init_title_screen(void)
     // add entities to list
     cvector_push_back(Titlescreen_Entities, titlescreen_entity);
     return;
-    return;
 }
 void update_title_screen(void)
 {
-    debug("update title screen");
     if (is_enter_pressed() == true)
     {
+        quit_title_screen();
         int instructions_screen = 3;
         Set_Current_Scene(instructions_screen);
-        quit_splash_screen();
         Init_Scene(instructions_screen);
     }
     return;

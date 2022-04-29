@@ -49,7 +49,10 @@ void update_instructions_screen(void)
     // debug("update instructions screen");
     if (is_enter_pressed() == true)
     {
-        // goto game screen
+        quit_instructions_screen();
+        int gameplay_screen = 4;
+        Set_Current_Scene(gameplay_screen);
+        Init_Scene(gameplay_screen);
     }
     return;
 }

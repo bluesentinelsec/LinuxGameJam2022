@@ -1,5 +1,5 @@
-CC = clang
-FLAGS = -Wall -Wextra -Werror -ferror-limit=1
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
 LIBS = `pkg-config sdl2 SDL2_image SDL2_mixer --libs --cflags`
 EXE = liberty_space_battle
 
@@ -25,6 +25,10 @@ linux_debug:
 
 linux_release:
 	$(CC) -o $(EXE) $(FLAGS) -O2 $(SOURCES) $(LIBS)
+	mkdir -p release/
+	cp $(EXE) release
+	cp -R media/ release/
+	cp LICENSE release/
 
 
 profile:
@@ -36,5 +40,6 @@ profile:
 clean:
 	rm -f $(EXE) 2>/dev/null; true
 	rm gmon.out profile.txt 2>/dev/null; true
+	rm -rf release 2>/dev/null; true
 
 .PHONY: clean

@@ -15,9 +15,6 @@
 */
 
 #include "sceneManager.h"
-#include "credits_screen.h"
-#include "lose_screen.h"
-#include "win_screen.h"
 
 // don't change these constants or everything will break
 // bad design and I don't have time to fix it :(
@@ -47,7 +44,6 @@ void Quit_Scene_Manager(void)
 void Init_Scene(int scene)
 {
     debug("Initializing scene: %d", scene);
-    int current_scene = Get_Current_Scene();
     if (current_scene == SCENE_SPLASH_SCREEN)
     {
         init_splash_screen();

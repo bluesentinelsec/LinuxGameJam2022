@@ -16,6 +16,7 @@
 
 #include "input.h"
 #include "SDL2/SDL.h"
+#include "sceneManager.h"
 #include <SDL2/SDL_events.h>
 
 extern bool game_should_run;
@@ -33,15 +34,19 @@ void check_keyboard_input(SDL_Event *event)
     case SDL_QUIT:
         game_should_run = false;
         break;
-      
+
     // KEY UP
     case SDL_KEYUP:
         // escape
         if (event->key.keysym.sym == SDLK_ESCAPE)
         {
             debug("escape was pressed");
-            game_should_run = false;
             escape_is_pressed = true;
+            int gamestate = Get_Current_Scene();
+            if (gamestate == 2) // on title screen
+            {
+                game_should_run = false;
+            }
         }
         // enter / return
         if (event->key.keysym.sym == SDLK_RETURN)
@@ -52,41 +57,6 @@ void check_keyboard_input(SDL_Event *event)
         if (event->key.keysym.sym == SDLK_SPACE)
         {
             space_is_pressed = true;
-        }
-        // 1
-        if (event->key.keysym.sym == SDLK_1)
-        {
-            debug("'1' was pressed");
-        }
-        // 2
-        if (event->key.keysym.sym == SDLK_2)
-        {
-            debug("'2' was pressed");
-        }
-        // 3
-        if (event->key.keysym.sym == SDLK_3)
-        {
-            debug("'3' was pressed");
-        }
-        // 4
-        if (event->key.keysym.sym == SDLK_4)
-        {
-            debug("'4' was pressed");
-        }
-        // 5
-        if (event->key.keysym.sym == SDLK_5)
-        {
-            debug("'5' was pressed");
-        }
-        // 6
-        if (event->key.keysym.sym == SDLK_6)
-        {
-            debug("'6' was pressed");
-        }
-        // 7
-        if (event->key.keysym.sym == SDLK_7)
-        {
-            debug("'7' was pressed");
         }
         break;
     default:
@@ -132,24 +102,24 @@ bool is_down_pressed(void)
 
 bool is_enter_pressed(void)
 {
-  // reset return key
-  bool temp = return_is_pressed;
-  return_is_pressed = false;
-  return temp;
+    // reset return key
+    bool temp = return_is_pressed;
+    return_is_pressed = false;
+    return temp;
 }
 
 bool is_escape_pressed(void)
 {
-  // reset return key
-  bool temp = escape_is_pressed;
-  escape_is_pressed = false;
-  return temp;
+    // reset return key
+    bool temp = escape_is_pressed;
+    escape_is_pressed = false;
+    return temp;
 }
 
 bool is_space_pressed(void)
 {
-  // reset return key
-  bool temp = space_is_pressed;
-  space_is_pressed = false;
-  return temp;
+    // reset return key
+    bool temp = space_is_pressed;
+    space_is_pressed = false;
+    return temp;
 }

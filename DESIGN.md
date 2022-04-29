@@ -39,25 +39,26 @@ Disable the enemy spaceship and deflect the bomb into the enemy base to win.
 1. Linux
 2. Windows
 3. MacOS
-4. HTML
+4. HTML - dropped from scope
 
+Note: I probably will not provide Mac or Windows builds on launch due to time constraints
 
 ## ToDo List
 
 1. [x] Setup window and renderer
 2. [x] Setup input system
-3. [WIP] Setup placeholder art
+3. [x] Setup placeholder art
 4. [x] Setup scene node
 5. [x] Setup scene manager
 6. [WIP] Setup game entity
-7. Setup entity manager
+7. [x] Setup entity manager
 8. Implement player entity
 9. Implement bomb entity
 10. Implement enemy entity
 11. Implement win/lose mechanics
 12. Implement shooting mechanic
-13. Implement sound and music
-14. Implement different game screens
+13. [WIP] Implement sound and music
+14. [x] Implement different game screens
 15. Upload to Itch, work on game page
 
 ## Splash Screen Message

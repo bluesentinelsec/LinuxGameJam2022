@@ -40,7 +40,7 @@ bool Init_Game(void)
     char *game_title = "Liberty Space Battle";
     const int width = 1920;
     int height = 1080;
-    bool fullscreen = false;
+    bool fullscreen = true;
     game_window = create_window(game_title, width, height, fullscreen);
 
     // initialize SDL subsystems

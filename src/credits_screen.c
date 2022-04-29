@@ -24,7 +24,7 @@ int Credits_BackgroundID = 0;
 
 void init_credits_screen(void)
 {
-    debug("init_instructions_screen");
+    debug("init_credits_screen");
 
     // create entity list to hold each entity in scene
     debug("declaring Credits_Entities");
@@ -50,6 +50,10 @@ void update_credits_screen(void)
     if (is_enter_pressed() == true)
     {
         // goto title screen
+        quit_credits_screen();
+        int title_scene = 2;
+        Set_Current_Scene(title_scene);
+        Init_Scene(title_scene);
     }
     return;
 }
@@ -67,7 +71,7 @@ void draw_credits_screen(void)
 
 void quit_credits_screen(void)
 {
-    debug("quit_instructions_screen");
+    debug("quit_credits_screen");
     size_t i = 0;
     for (i = 0; i < cvector_size(Credits_Entities); i++)
     {

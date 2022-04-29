@@ -24,7 +24,7 @@ int Lose_BackgroundID = 0;
 
 void init_lose_screen(void)
 {
-    debug("init_instructions_screen");
+    debug("init_lose_screen");
 
     // create entity list to hold each entity in scene
     debug("declaring Losescreen_Entities");
@@ -50,6 +50,10 @@ void update_lose_screen(void)
     if (is_enter_pressed() == true)
     {
         // goto credits screen
+        quit_lose_screen();
+        int credits_screen = 7;
+        Set_Current_Scene(credits_screen);
+        Init_Scene(credits_screen);
     }
     return;
 }
@@ -67,7 +71,7 @@ void draw_lose_screen(void)
 
 void quit_lose_screen(void)
 {
-    debug("quit_instructions_screen");
+    debug("quit_lose_screen");
     size_t i = 0;
     for (i = 0; i < cvector_size(Losescreen_Entities); i++)
     {

@@ -24,7 +24,7 @@ int Win_BackgroundID = 0;
 
 void init_win_screen(void)
 {
-    debug("init_instructions_screen");
+    debug("init_win_screen");
 
     // create entity list to hold each entity in scene
     debug("declaring Gameplay_Entities");
@@ -49,7 +49,10 @@ void update_win_screen(void)
     // debug("update instructions screen");
     if (is_enter_pressed() == true)
     {
-        // goto credits scene
+        quit_win_screen();
+        int credits_screen = 7;
+        Set_Current_Scene(credits_screen);
+        Init_Scene(credits_screen);
     }
     return;
 }
@@ -67,7 +70,7 @@ void draw_win_screen(void)
 
 void quit_win_screen(void)
 {
-    debug("quit_instructions_screen");
+    debug("quit_win_screen");
     size_t i = 0;
     for (i = 0; i < cvector_size(Winscreen_Entities); i++)
     {

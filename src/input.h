@@ -22,6 +22,7 @@
 // Internal dependencies
 #include "dbg.h"
 #include "game.h"
+#include "sceneManager.h"
 
 // External dependencies
 #include <SDL2/SDL.h>

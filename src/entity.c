@@ -15,10 +15,11 @@
 */
 
 #include "entity.h"
+#include <stdlib.h>
 
 Entity_T *Create_Entity(int id, char *img, int xPos, int yPos, bool isActive)
 {
-    Entity_T *entity = malloc(sizeof(Entity_T) * 1);
+    Entity_T *entity = calloc(1, sizeof(Entity_T));
     check_mem(entity);
 
     entity->image = IMG_Load(img);
@@ -42,9 +43,19 @@ error:
 
 void Free_Entity(Entity_T *entity)
 {
-    SDL_DestroyTexture(entity->texture);
-    SDL_FreeSurface(entity->image);
-    free(entity);
+    if (entity->texture != NULL)
+    {
+        SDL_DestroyTexture(entity->texture);
+    }
+
+    if (entity->image != NULL)
+    {
+        SDL_FreeSurface(entity->image);
+    }
+    if (entity != NULL)
+    {
+        free(entity);
+    }
     entity = NULL;
     return;
 }
