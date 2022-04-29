@@ -33,7 +33,10 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
+
 void init_gameplay_screen(void);
 void update_gameplay_screen(void);
 void draw_gameplay_screen(void);
 void quit_gameplay_screen(void);
+
+void update_player_entity(size_t);

@@ -33,20 +33,23 @@ typedef void (*update_cb)(void);
 struct Entity
 {
     int id;
-    int xPos;
-    int yPos;
     bool isActive;
+    int xSpeed;
+    int ySpeed;
+    SDL_Rect Src_Rect;
+    SDL_Rect Dst_Rect;
     SDL_Surface *image;
     SDL_Texture *texture;
     update_cb update_fp;
 };
-typedef struct Entity Entity_T;
 
+typedef struct Entity Entity_T;
 
 Entity_T *Create_Entity(int id, char *img, int xPos, int yPos, bool isActive);
 void Free_Entity(Entity_T *entity);
 void update(void);
 void Set_Entity_Update_Method(Entity_T *entity, update_cb update_fp);
+void Set_Entity_Position(Entity_T *entity, int x, int y);
 
 // ToDo:
 // enable entity

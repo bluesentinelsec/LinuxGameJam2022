@@ -15,7 +15,7 @@
 */
 
 #include "entity.h"
-#include <stdlib.h>
+
 
 Entity_T *Create_Entity(int id, char *img, int xPos, int yPos, bool isActive)
 {
@@ -29,11 +29,23 @@ Entity_T *Create_Entity(int id, char *img, int xPos, int yPos, bool isActive)
     check_mem(entity->texture);
 
     entity->id = id;
-    entity->xPos = xPos;
-    entity->yPos = yPos;
-    entity->isActive = isActive;
+    entity->xSpeed = 0;
+    entity->ySpeed = 0;
+    // position
+    int qW, qH;
+    SDL_QueryTexture(entity->texture, NULL, NULL, &qW, &qH);
+    debug("%d %d", qW, qH);
+    entity->Src_Rect.x = xPos;
+    entity->Src_Rect.y = yPos;
+    entity->Src_Rect.w = qW;
+    entity->Src_Rect.h = qH;
 
-    entity->update_fp = update;
+    entity->Dst_Rect.x = entity->Src_Rect.x;
+    entity->Dst_Rect.y = entity->Src_Rect.y;
+    entity->Dst_Rect.w = entity->Src_Rect.w;
+    entity->Dst_Rect.h = entity->Src_Rect.h;
+
+    entity->isActive = isActive;
 
     return entity;
 error:
@@ -68,4 +80,10 @@ void update(void)
 void Set_Entity_Update_Method(Entity_T *entity, update_cb update_fp)
 {
     entity->update_fp = update_fp;
+}
+
+void Set_Entity_Position(Entity_T *entity, int x, int y)
+{
+    entity->Dst_Rect.x = x;
+    entity->Dst_Rect.y = y;
 }
