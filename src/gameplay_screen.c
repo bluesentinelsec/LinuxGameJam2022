@@ -170,6 +170,8 @@ void update_player_entity(size_t i)
         Set_Entity_Position(Gameplay_Entities[i], playerXdelta, playerYdelta);
     }
 
+    // ToDo: if space is pressed, spawn laser
+
     // check collisions
 
     return;
