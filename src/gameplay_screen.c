@@ -15,6 +15,8 @@
 */
 
 #include "gameplay_screen.h"
+#include "entity.h"
+#include <SDL2/SDL_mixer.h>
 
 // give entities file scope
 cvector_vector_type(Entity_T *) Gameplay_Entities;
@@ -33,6 +35,12 @@ int PlayerLaserID = 3;
 
 Entity_T *EnemyLaser;
 int EnemyLaserID = 4;
+
+// sound effects
+Mix_Chunk *Sound_Effects[3];
+Mix_Chunk *sound_laser = NULL;
+Mix_Chunk *enemy_laser = NULL;
+Mix_Chunk *explosion = NULL;
 
 void init_gameplay_screen(void)
 {
@@ -60,10 +68,26 @@ void init_gameplay_screen(void)
     Player->ySpeed = 50;
     Set_Entity_Position(Player, 128, 500);
 
+    // player laser
+    char *player_laser_img = "media/images/player_laser.png";
+    PlayerLaser = Create_Entity(PlayerLaserID, player_laser_img, 0, 0, false);
+    PlayerLaser->xSpeed = 50;
+    Set_Entity_Position(PlayerLaser, 0, 0);
+
     // add entities to list
     debug("cvector_push_back(Gameplay_Entities, Background)");
     cvector_push_back(Gameplay_Entities, Background);
     cvector_push_back(Gameplay_Entities, Player);
+    cvector_push_back(Gameplay_Entities, PlayerLaser);
+
+    // load sounds
+    Mix_Chunk *sound_laser = Mix_LoadWAV("media/sound/laser.wav");
+    Mix_Chunk *enemy_laser = Mix_LoadWAV("media/sound/enemy_laser.wav");
+    Mix_Chunk *explosion = Mix_LoadWAV("media/sound/explosion.wav");
+
+    Sound_Effects[0] = sound_laser;
+    Sound_Effects[1] = enemy_laser;
+    Sound_Effects[2] = explosion;
     return;
 }
 
@@ -76,6 +100,14 @@ void update_gameplay_screen(void)
         {
             update_player_entity(i);
         }
+        else if (Gameplay_Entities[i]->id == PlayerLaserID)
+        {
+            update_player_laser(i);
+        }
+        else
+        {
+            continue;
+        }
     }
 
     if (is_enter_pressed() == true)
@@ -87,6 +119,7 @@ void update_gameplay_screen(void)
         Init_Scene(win_screen);
     }
 
+    /*
     if (is_space_pressed() == true)
     {
         // goto lose screen
@@ -95,10 +128,7 @@ void update_gameplay_screen(void)
         Set_Current_Scene(lose_screen);
         Init_Scene(lose_screen);
     }
-    // move player up
-
-    // if down pressed
-    // move player down
+    */
 
     // if space pressed and player laser is not active
     // play sound
@@ -135,8 +165,11 @@ void draw_gameplay_screen(void)
     size_t i = 0;
     for (i = 0; i < cvector_size(Gameplay_Entities); i++)
     {
-        SDL_RenderCopy(Get_Renderer(), Gameplay_Entities[i]->texture, &Gameplay_Entities[i]->Src_Rect,
-                       &Gameplay_Entities[i]->Dst_Rect);
+        if (Gameplay_Entities[i]->isActive == true)
+        {
+            SDL_RenderCopy(Get_Renderer(), Gameplay_Entities[i]->texture, &Gameplay_Entities[i]->Src_Rect,
+                           &Gameplay_Entities[i]->Dst_Rect);
+        }
     }
     return;
 }
@@ -171,8 +204,29 @@ void update_player_entity(size_t i)
     }
 
     // ToDo: if space is pressed, spawn laser
+    if (is_space_pressed() == true && Gameplay_Entities[2]->isActive == false)
+    {
+        // player laser sound and activate laser
+        // at player position
+        Mix_PlayChannel(-1, Sound_Effects[0], 0);
+        int laser_offset_y = Gameplay_Entities[i]->Src_Rect.h / 2;
+        Set_Entity_Position(Gameplay_Entities[2], Gameplay_Entities[i]->Dst_Rect.x,
+                            Gameplay_Entities[i]->Dst_Rect.y + laser_offset_y);
+        Gameplay_Entities[2]->isActive = true;
+    }
 
     // check collisions
+    // for every instance except this one and the background
+    // if the instance is a laser
+    // collide
 
     return;
+}
+
+void update_player_laser(size_t i)
+{
+    // if off screen, set inactive
+    // else keep moving right
+    int laserXdelta = Gameplay_Entities[i]->Dst_Rect.x + Gameplay_Entities[i]->xSpeed;
+    Set_Entity_Position(Gameplay_Entities[i], laserXdelta, Gameplay_Entities[i]->Dst_Rect.y);
 }
