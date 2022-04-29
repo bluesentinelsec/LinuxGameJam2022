@@ -49,7 +49,7 @@ void update_win_screen(void)
     // debug("update instructions screen");
     if (is_enter_pressed() == true)
     {
-        // do stuff
+        // goto credits scene
     }
     return;
 }

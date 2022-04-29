@@ -49,7 +49,12 @@ void update_gameplay_screen(void)
     // debug("update instructions screen");
     if (is_enter_pressed() == true)
     {
-        // do stuff
+        // goto win screen
+    }
+
+    if (is_space_pressed() == true)
+    {
+        // goto lose screen
     }
     return;
 }

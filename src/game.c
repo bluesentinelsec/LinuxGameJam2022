@@ -15,6 +15,7 @@
 */
 
 #include "game.h"
+#include <SDL2/SDL_mixer.h>
 
 struct GameWindow
 {
@@ -29,6 +30,7 @@ struct GameWindow
 // global variables
 struct GameWindow *game_window;
 bool game_should_run = true;
+Mix_Music *song = NULL;
 
 bool Init_Game(void)
 {
@@ -51,6 +53,9 @@ bool Init_Game(void)
 
     rc = Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 2048);
     check(rc == 0, "Unable to open audio device");
+
+    song = Mix_LoadMUS("media/music/music.wav");
+    Mix_PlayMusic(song, -1);
 
     // create SDL window
     game_window->window_p = create_SDL_window(game_window);
@@ -119,6 +124,8 @@ void End_Game(void)
 {
     debug("End_Game");
     Quit_Scene_Manager();
+    Mix_HaltMusic();
+    Mix_FreeMusic(song);
     Mix_CloseAudio();
     IMG_Quit();
     SDL_DestroyRenderer(game_window->renderer_p);

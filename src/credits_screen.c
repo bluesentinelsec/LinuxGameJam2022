@@ -49,7 +49,7 @@ void update_credits_screen(void)
     // debug("update instructions screen");
     if (is_enter_pressed() == true)
     {
-        // do stuff
+        // goto title screen
     }
     return;
 }

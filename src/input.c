@@ -23,6 +23,8 @@ extern bool game_should_run;
 bool up_arrow_is_pressed = false;
 bool down_arrow_is_pressed = false;
 bool return_is_pressed = false;
+bool escape_is_pressed = false;
+bool space_is_pressed = false;
 
 void check_keyboard_input(SDL_Event *event)
 {
@@ -39,6 +41,7 @@ void check_keyboard_input(SDL_Event *event)
         {
             debug("escape was pressed");
             game_should_run = false;
+            escape_is_pressed = true;
         }
         // enter / return
         if (event->key.keysym.sym == SDLK_RETURN)
@@ -48,7 +51,7 @@ void check_keyboard_input(SDL_Event *event)
         // space
         if (event->key.keysym.sym == SDLK_SPACE)
         {
-            debug("space was pressed");
+            space_is_pressed = true;
         }
         // 1
         if (event->key.keysym.sym == SDLK_1)
@@ -132,5 +135,21 @@ bool is_enter_pressed(void)
   // reset return key
   bool temp = return_is_pressed;
   return_is_pressed = false;
+  return temp;
+}
+
+bool is_escape_pressed(void)
+{
+  // reset return key
+  bool temp = escape_is_pressed;
+  escape_is_pressed = false;
+  return temp;
+}
+
+bool is_space_pressed(void)
+{
+  // reset return key
+  bool temp = space_is_pressed;
+  space_is_pressed = false;
   return temp;
 }

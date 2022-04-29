@@ -30,3 +30,4 @@ void check_keyboard_input(SDL_Event *event);
 bool is_up_pressed(void);
 bool is_down_pressed(void);
 bool is_enter_pressed(void);
+bool is_space_pressed(void);
