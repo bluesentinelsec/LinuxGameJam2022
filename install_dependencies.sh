@@ -24,7 +24,7 @@ fi
 
 # debian, ubuntu
 if [ -x "$(command -v apt)" ]; then
-  apt install libsdl2{,-image,-mixer}
+  apt install libsdl2-2.0-0 libsdl2-mixer-2.0-0 libsdl2-image-2.0-0
 fi
 
 # arch linux
