@@ -14,7 +14,9 @@
     Copyright (C) 2022 Blue Sentinel Security LLC
 */
 
+#include "gameplay_screen.h"
 #include "entity.h"
+#include <stdbool.h>
 
 // give entities file scope
 cvector_vector_type(Entity_T *) Gameplay_Entities;
@@ -27,6 +29,11 @@ int PlayerID = 1;
 
 Entity_T *Enemy;
 int EnemyID = 2;
+
+// move up if below top screen
+int Enemydirection = 1;
+int EnemymoveUp = -1;
+int EnemyMoveDown = 1;
 
 Entity_T *PlayerLaser;
 int PlayerLaserID = 3;
@@ -72,11 +79,20 @@ void init_gameplay_screen(void)
     PlayerLaser->xSpeed = 50;
     Set_Entity_Position(PlayerLaser, 0, 0);
 
+    // enemy
+    char *enemy_img = "media/images/enemy_ship.png";
+    Enemy = Create_Entity(EnemyID, enemy_img, 0, 0, true);
+    Enemy->xSpeed = 50;
+    Enemy->ySpeed = 50;
+    Set_Entity_Position(Enemy, 1664, 500);
+    Enemydirection = EnemymoveUp;
+
     // add entities to list
     debug("cvector_push_back(Gameplay_Entities, Background)");
     cvector_push_back(Gameplay_Entities, Background);
     cvector_push_back(Gameplay_Entities, Player);
     cvector_push_back(Gameplay_Entities, PlayerLaser);
+    cvector_push_back(Gameplay_Entities, Enemy);
 
     // load sounds
     sound_laser = Mix_LoadWAV("media/sound/laser.wav");
@@ -101,6 +117,11 @@ void update_gameplay_screen(void)
         else if (Gameplay_Entities[i]->id == PlayerLaserID)
         {
             update_player_laser(i);
+        }
+        else if (Gameplay_Entities[i]->id == EnemyID)
+        {
+            debug("update enemy");
+            update_enemy(i);
         }
         else
         {
@@ -127,14 +148,6 @@ void update_gameplay_screen(void)
         Init_Scene(lose_screen);
     }
     */
-
-    // if space pressed and player laser is not active
-    // play sound
-    // set laser to active
-    // create laster entity
-
-    // if laser entity is not off screen
-    // move right
 
     // if laser entity collides with enemy entity
     // kill enemy, remove laser
@@ -248,4 +261,40 @@ void update_player_laser(size_t i)
     }
 
     // check collision with enemy
+}
+
+void update_enemy(size_t i)
+{
+
+    // move up
+    if (Gameplay_Entities[i]->Dst_Rect.y > 0 && Enemydirection == EnemymoveUp)
+    {
+        int theEnemyYdelta = Gameplay_Entities[i]->Dst_Rect.y - Gameplay_Entities[i]->ySpeed;
+        Set_Entity_Position(Gameplay_Entities[i], Gameplay_Entities[i]->Dst_Rect.x, theEnemyYdelta);
+    }
+
+    if (Gameplay_Entities[i]->Dst_Rect.y <= 0)
+    {
+        Enemydirection = EnemyMoveDown;
+    }
+
+    // move down
+    if (Gameplay_Entities[i]->Dst_Rect.y < 952 && Enemydirection == EnemyMoveDown)
+    {
+        int theEnemyYdelta = Gameplay_Entities[i]->Dst_Rect.y + Gameplay_Entities[i]->ySpeed;
+        Set_Entity_Position(Gameplay_Entities[i], Gameplay_Entities[i]->Dst_Rect.x, theEnemyYdelta);
+    }
+
+    if (Gameplay_Entities[i]->Dst_Rect.y >= 952)
+    {
+        Enemydirection = EnemymoveUp;
+    }
+
+    /*
+    if (Gameplay_Entities[i]->Dst_Rect.y < 952)
+    {
+        int theEnemyYdelta = Gameplay_Entities[i]->Dst_Rect.y + Gameplay_Entities[i]->ySpeed;
+        Set_Entity_Position(Gameplay_Entities[i], Gameplay_Entities[i]->Dst_Rect.x, theEnemyYdelta);
+    }
+    */
 }

@@ -40,5 +40,5 @@ void draw_gameplay_screen(void);
 void quit_gameplay_screen(void);
 
 void update_player_entity(size_t);
-
 void update_player_laser(size_t);
+void update_enemy(size_t);
