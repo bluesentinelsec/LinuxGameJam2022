@@ -25,10 +25,12 @@ linux_debug:
 
 linux_release:
 	$(CC) -o $(EXE) $(FLAGS) -O2 $(SOURCES) $(LIBS)
-	mkdir -p release/
-	cp $(EXE) release
-	cp -R media/ release/
-	cp LICENSE release/
+	mkdir -p LibertySpaceBattle/
+	cp $(EXE) LibertySpaceBattle
+	cp -R media/ LibertySpaceBattle/
+	cp LICENSE LibertySpaceBattle/
+	cp Instructions.md LibertySpaceBattle/
+	zip -r LibertySpaceBattle.zip LibertySpaceBattle/
 
 
 profile:
@@ -41,5 +43,7 @@ clean:
 	rm -f $(EXE) 2>/dev/null; true
 	rm gmon.out profile.txt 2>/dev/null; true
 	rm -rf release 2>/dev/null; true
+	rm -rf LibertySpaceBattle 2>/dev/null; true
+	rm -rf LibertySpaceBattle.zip 2>/dev/null; true
 
 .PHONY: clean

@@ -34,7 +34,6 @@ Entity_T *Create_Entity(int id, char *img, int xPos, int yPos, bool isActive)
     // position
     int qW, qH;
     SDL_QueryTexture(entity->texture, NULL, NULL, &qW, &qH);
-    debug("%d %d", qW, qH);
     entity->Src_Rect.x = xPos;
     entity->Src_Rect.y = yPos;
     entity->Src_Rect.w = qW;
