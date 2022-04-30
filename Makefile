@@ -24,12 +24,13 @@ linux_debug:
 
 
 linux_release:
-	$(CC) -o $(EXE) $(FLAGS) -O2 $(SOURCES) $(LIBS)
+	$(CC) -o $(EXE) $(FLAGS) -O2 $(SOURCES) $(LIBS) -static
 	mkdir -p LibertySpaceBattle/
 	cp $(EXE) LibertySpaceBattle
 	cp -R media/ LibertySpaceBattle/
 	cp LICENSE LibertySpaceBattle/
 	cp Instructions.md LibertySpaceBattle/
+	cp install_dependencies.sh LibertySpaceBattle/
 	zip -r LibertySpaceBattle.zip LibertySpaceBattle/
 
 

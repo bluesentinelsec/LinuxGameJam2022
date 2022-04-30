@@ -6,6 +6,16 @@ Command your ship and destory the enemy pilot
 before he/she destorys you!
 
 
+## Mechanics
+
+- Shoot the enemy pilot three times to win.
+
+## Controls
+
+- **Up arrow**: move up
+- **Down arrow**: move down
+- **Space bar**: fire laser
+
 ## Installation Instructions:
 
 This program requires Simple Direct Media Layer 2 (SDL2), and also SDL2_image and SDL2_mixer.
@@ -37,3 +47,21 @@ TBD
 See the project GitHub repository for instructions on building from source code.
 
 https://github.com/bluesentinelsec/LinuxGameJam2022
+
+## This software respects your liberty
+
+- No microtransactions
+- No data collection
+- No advertisements
+- No DRM
+
+- You may use this software however you wish
+- You may read and change the source code
+- You may share your changes with anyone
+
+
+## This project was created with free software
+
+1. Programming: VS Codium, Vim, Make, gcc, clang
+2. Artwork: Gimp
+3. Sound: SFXR
