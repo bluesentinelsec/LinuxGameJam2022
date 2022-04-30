@@ -14,9 +14,7 @@
     Copyright (C) 2022 Blue Sentinel Security LLC
 */
 
-#include "gameplay_screen.h"
 #include "entity.h"
-#include <SDL2/SDL_mixer.h>
 
 // give entities file scope
 cvector_vector_type(Entity_T *) Gameplay_Entities;
@@ -81,9 +79,9 @@ void init_gameplay_screen(void)
     cvector_push_back(Gameplay_Entities, PlayerLaser);
 
     // load sounds
-    Mix_Chunk *sound_laser = Mix_LoadWAV("media/sound/laser.wav");
-    Mix_Chunk *enemy_laser = Mix_LoadWAV("media/sound/enemy_laser.wav");
-    Mix_Chunk *explosion = Mix_LoadWAV("media/sound/explosion.wav");
+    sound_laser = Mix_LoadWAV("media/sound/laser.wav");
+    enemy_laser = Mix_LoadWAV("media/sound/enemy_laser.wav");
+    explosion = Mix_LoadWAV("media/sound/explosion.wav");
 
     Sound_Effects[0] = sound_laser;
     Sound_Effects[1] = enemy_laser;
@@ -203,6 +201,17 @@ void update_player_entity(size_t i)
         Set_Entity_Position(Gameplay_Entities[i], playerXdelta, playerYdelta);
     }
 
+    // clamp player height
+    if (Gameplay_Entities[i]->Dst_Rect.y < 0)
+    {
+        Set_Entity_Position(Gameplay_Entities[i], Gameplay_Entities[i]->Dst_Rect.x, 0 + 32);
+    }
+
+    if (Gameplay_Entities[i]->Dst_Rect.y > 952)
+    {
+        Set_Entity_Position(Gameplay_Entities[i], Gameplay_Entities[i]->Dst_Rect.x, 952 - 32);
+    }
+
     // ToDo: if space is pressed, spawn laser
     if (is_space_pressed() == true && Gameplay_Entities[2]->isActive == false)
     {
@@ -212,6 +221,7 @@ void update_player_entity(size_t i)
         int laser_offset_y = Gameplay_Entities[i]->Src_Rect.h / 2;
         Set_Entity_Position(Gameplay_Entities[2], Gameplay_Entities[i]->Dst_Rect.x,
                             Gameplay_Entities[i]->Dst_Rect.y + laser_offset_y);
+        // set laster to active
         Gameplay_Entities[2]->isActive = true;
     }
 
@@ -227,6 +237,15 @@ void update_player_laser(size_t i)
 {
     // if off screen, set inactive
     // else keep moving right
-    int laserXdelta = Gameplay_Entities[i]->Dst_Rect.x + Gameplay_Entities[i]->xSpeed;
-    Set_Entity_Position(Gameplay_Entities[i], laserXdelta, Gameplay_Entities[i]->Dst_Rect.y);
+    if (Gameplay_Entities[i]->Dst_Rect.x > 1920)
+    {
+        Gameplay_Entities[i]->isActive = false;
+    }
+    else
+    {
+        int laserXdelta = Gameplay_Entities[i]->Dst_Rect.x + Gameplay_Entities[i]->xSpeed;
+        Set_Entity_Position(Gameplay_Entities[i], laserXdelta, Gameplay_Entities[i]->Dst_Rect.y);
+    }
+
+    // check collision with enemy
 }
