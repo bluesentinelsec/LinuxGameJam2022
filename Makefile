@@ -23,15 +23,15 @@ linux_debug:
 	$(CC) -o $(EXE) $(FLAGS) -g $(SOURCES) $(LIBS)
 
 
-linux_release:
-	$(CC) -o $(EXE) $(FLAGS) -O2 $(SOURCES) $(LIBS) -static
+fedora:
+	$(CC) -o $(EXE) $(FLAGS) -O2 $(SOURCES) $(LIBS)
 	mkdir -p LibertySpaceBattle/
 	cp $(EXE) LibertySpaceBattle
 	cp -R media/ LibertySpaceBattle/
 	cp LICENSE LibertySpaceBattle/
 	cp Instructions.md LibertySpaceBattle/
 	cp install_dependencies.sh LibertySpaceBattle/
-	zip -r LibertySpaceBattle.zip LibertySpaceBattle/
+	zip -r LibertySpaceBattle_fedora.zip LibertySpaceBattle/
 
 
 profile:
