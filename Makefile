@@ -22,8 +22,13 @@ mac:
 linux_debug:
 	$(CC) -o $(EXE) $(FLAGS) -g $(SOURCES) $(LIBS)
 
+ubuntu: linux_release
+	zip -r LibertySpaceBattle_Ubuntu.zip LibertySpaceBattle/
 
-fedora:
+fedora: linux_release
+	zip -r LibertySpaceBattle_Fedora.zip LibertySpaceBattle/
+
+linux_release:
 	$(CC) -o $(EXE) $(FLAGS) -O2 $(SOURCES) $(LIBS)
 	mkdir -p LibertySpaceBattle/
 	cp $(EXE) LibertySpaceBattle
@@ -31,7 +36,6 @@ fedora:
 	cp LICENSE LibertySpaceBattle/
 	cp Instructions.md LibertySpaceBattle/
 	cp install_dependencies.sh LibertySpaceBattle/
-	zip -r LibertySpaceBattle_fedora.zip LibertySpaceBattle/
 
 
 profile:
