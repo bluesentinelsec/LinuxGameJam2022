@@ -20,7 +20,7 @@ before he/she destorys you!
 
 This program requires Simple Direct Media Layer 2 (SDL2), and also SDL2_image and SDL2_mixer.
 
-**MacOS and Linux Users**:
+**Linux**:
 
 First run the installation script to install SDL.
 
@@ -40,7 +40,10 @@ Now run the game:
 
 **Windows**
 
-TBD
+The Windows OS build ships with needed dependencies.
+
+You should only have to double click "liberty_space_battle.exe"
+
 
 ## Build program from source code
 

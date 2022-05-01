@@ -34,6 +34,18 @@ linux_release:
 	cp Instructions.md LibertySpaceBattle/
 	cp install_dependencies.sh LibertySpaceBattle/
 
+WIN_EXE = windows/LibertySpaceBattle_windowsx64/liberty_space_battle.exe
+WIN_CC = x86_64-w64-mingw32-gcc
+WIN_FLAGS = -w -Wl,-subsystem,windows -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer 
+windows:
+	mkdir -p windows/LibertySpaceBattle_windowsx64
+	$(WIN_CC) -o $(WIN_EXE) $(SOURCES) $(WIN_FLAGS)
+	mv liberty_space_battle.exe windows/LibertySpaceBattle_windowsx64/
+	cp windows/runtime_libraries_x64/* windows/LibertySpaceBattle_windowsx64/
+	cp -R media/ windows/LibertySpaceBattle_windowsx64/
+	cp LICENSE windows/LibertySpaceBattle_windowsx64/
+	cp Instructions.md windows/LibertySpaceBattle_windowsx64/
+
 mac:
 	$(CC) -o $(EXE) $(SOURCES) $(FLAGS) $(LIBS)
 
@@ -51,4 +63,4 @@ clean:
 	rm -rf LibertySpaceBattle 2>/dev/null; true
 	rm -rf LibertySpaceBattle.zip 2>/dev/null; true
 
-.PHONY: clean
+.PHONY: clean windows

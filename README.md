@@ -3,7 +3,7 @@
 This is my repository for the [Linux Game Jam 2022](https://itch.io/jam/linux-game-jam-2022).
 
 
-## Installation Instructions
+## Installation Instructions (Linux)
 
 Open a terminal and run the following commands:
 
