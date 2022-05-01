@@ -1,5 +1,5 @@
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra
 LIBS = `pkg-config sdl2 SDL2_image SDL2_mixer --libs --cflags`
 EXE = liberty_space_battle
 
@@ -47,7 +47,13 @@ windows:
 	cp Instructions.md windows/LibertySpaceBattle_windowsx64/
 
 mac:
-	$(CC) -o $(EXE) $(SOURCES) $(FLAGS) $(LIBS)
+	$(CC) -o $(EXE) -O2 $(SOURCES) $(FLAGS) $(LIBS)
+	mkdir -p LibertySpaceBattle/media
+	mv $(EXE) LibertySpaceBattle
+	cp -R media/ LibertySpaceBattle/media/
+	cp LICENSE LibertySpaceBattle/
+	cp Instructions.md LibertySpaceBattle/
+	cp install_mac_dependencies.sh LibertySpaceBattle/
 
 
 profile:

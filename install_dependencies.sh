@@ -37,9 +37,4 @@ if [ -x "$(command -v emerge)" ]; then
   emerge -av libsdl2 sdl2-{image,mixer}
 fi
 
-# macos
-if [ -x "$(command -v brew)" ]; then
-  brew install sdl2{,_image,_mixer}
-fi
-
 echo "[i] Finished installing dependencies."
