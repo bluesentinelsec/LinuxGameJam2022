@@ -16,14 +16,14 @@
 
 #pragma once
 
+#include "credits_screen.h"
 #include "dbg.h"
+#include "gameplay_screen.h"
+#include "instructions_screen.h"
+#include "lose_screen.h"
 #include "splash_screen.h"
 #include "title_screen.h"
-#include "instructions_screen.h"
-#include "gameplay_screen.h"
 #include "win_screen.h"
-#include "lose_screen.h"
-#include "credits_screen.h"
 
 void Init_Scene_Manager(void);
 void Update_Current_Scene(void);

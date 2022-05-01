@@ -15,7 +15,6 @@
 */
 
 #include "game.h"
-#include <SDL2/SDL_mixer.h>
 
 struct GameWindow
 {
@@ -63,8 +62,7 @@ bool Init_Game(void)
 
     // create renderer
     int auto_select_rendering_driver = -1;
-    game_window->renderer_p = SDL_CreateRenderer(game_window->window_p,
-                                                 auto_select_rendering_driver,
+    game_window->renderer_p = SDL_CreateRenderer(game_window->window_p, auto_select_rendering_driver,
                                                  SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     check(game_window->renderer_p != NULL, "Unable to create SDL renderer: %s", SDL_GetError());
@@ -74,7 +72,8 @@ bool Init_Game(void)
     return true;
 
 error:
-    log_err("Unable to launch game. Check that you have SDL2 runtime libraries installed. More info available here: https://www.libsdl.org/download-2.0.php");
+    log_err("Unable to launch game. Check that you have SDL2 runtime libraries installed. More info available here: "
+            "https://www.libsdl.org/download-2.0.php");
     log_err("Also check that you have runtime libraries for: SDL2_image SDL2_mixer SDL2_gfx");
     return false;
 }
@@ -82,7 +81,7 @@ error:
 void Run_Game(void)
 {
     int FPS = 30;
-    int frame_delay = 1000/FPS;
+    int frame_delay = 1000 / FPS;
     debug("Run_Game");
     while (game_should_run)
     {
@@ -99,7 +98,6 @@ void Run_Game(void)
         {
             SDL_Delay(frame_delay - frame_time);
         }
-
     }
 }
 
@@ -164,21 +162,13 @@ SDL_Window *create_SDL_window(struct GameWindow *game_window)
     SDL_Window *sdl_window = NULL;
     if (game_window->window_is_fullscreen)
     {
-        sdl_window = SDL_CreateWindow(game_window->window_title,
-                                      SDL_WINDOWPOS_UNDEFINED,
-                                      SDL_WINDOWPOS_UNDEFINED,
-                                      game_window->window_width,
-                                      game_window->window_height,
-                                      SDL_WINDOW_FULLSCREEN);
+        sdl_window = SDL_CreateWindow(game_window->window_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                                      game_window->window_width, game_window->window_height, SDL_WINDOW_FULLSCREEN);
     }
     else // not full screen
     {
-        sdl_window = SDL_CreateWindow(game_window->window_title,
-                                      SDL_WINDOWPOS_UNDEFINED,
-                                      SDL_WINDOWPOS_UNDEFINED,
-                                      game_window->window_width,
-                                      game_window->window_height,
-                                      SDL_WINDOW_SHOWN);
+        sdl_window = SDL_CreateWindow(game_window->window_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                                      game_window->window_width, game_window->window_height, SDL_WINDOW_SHOWN);
     }
     SDL_ShowCursor(SDL_DISABLE);
     return sdl_window;

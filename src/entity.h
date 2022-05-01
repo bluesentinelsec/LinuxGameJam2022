@@ -29,7 +29,6 @@
 
 typedef void (*update_cb)(void);
 
-// todo - need to add a src and dst rect
 struct Entity
 {
     int id;
@@ -50,13 +49,3 @@ void Free_Entity(Entity_T *entity);
 void update(void);
 void Set_Entity_Update_Method(Entity_T *entity, update_cb update_fp);
 void Set_Entity_Position(Entity_T *entity, int x, int y);
-
-// ToDo:
-// enable entity
-// disable entity
-// get entity x
-// get entity y
-// set entity x
-// set entity y
-// get src rect
-// get dst rect

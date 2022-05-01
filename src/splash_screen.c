@@ -14,7 +14,6 @@
     Copyright (C) 2022 Blue Sentinel Security LLC
 */
 
-#include "splash_screen.h"
 #include "sceneManager.h"
 
 // give entities file scope
@@ -48,7 +47,7 @@ void update_splash_screen(void)
 
     if (is_enter_pressed() == true)
     {
-        
+
         int title_scene = 2;
         Set_Current_Scene(title_scene);
         Init_Scene(title_scene);
@@ -76,7 +75,7 @@ void quit_splash_screen(void)
     {
         Free_Entity(Splashscreen_Entities[i]);
     }
-    
+
     cvector_free(Splashscreen_Entities);
     return;
 }

@@ -16,7 +16,6 @@
 
 #include "entity.h"
 
-
 Entity_T *Create_Entity(int id, char *img, int xPos, int yPos, bool isActive)
 {
     Entity_T *entity = calloc(1, sizeof(Entity_T));

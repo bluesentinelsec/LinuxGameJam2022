@@ -15,8 +15,6 @@
 */
 
 #include "gameplay_screen.h"
-#include "entity.h"
-#include <stdbool.h>
 
 // give entities file scope
 cvector_vector_type(Entity_T *) Gameplay_Entities;

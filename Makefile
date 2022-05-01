@@ -16,9 +16,6 @@ SOURCES = 	src/main.c \
 			src/lose_screen.c \
 			src/win_screen.c
 
-mac:
-	$(CC) -o $(EXE) $(SOURCES) $(FLAGS) $(LIBS)
-
 linux_debug:
 	$(CC) -o $(EXE) $(FLAGS) -g $(SOURCES) $(LIBS)
 
@@ -36,6 +33,9 @@ linux_release:
 	cp LICENSE LibertySpaceBattle/
 	cp Instructions.md LibertySpaceBattle/
 	cp install_dependencies.sh LibertySpaceBattle/
+
+mac:
+	$(CC) -o $(EXE) $(SOURCES) $(FLAGS) $(LIBS)
 
 
 profile:

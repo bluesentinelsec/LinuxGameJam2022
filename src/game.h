@@ -22,13 +22,12 @@
 
 // Internal dependencies
 #include "dbg.h"
-#include "sceneManager.h"
 #include "input.h"
+#include "sceneManager.h"
 
 // External dependencies
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 
 // primary game engine functions

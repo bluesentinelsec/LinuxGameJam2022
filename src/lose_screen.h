@@ -29,9 +29,7 @@
 // External dependencies
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL2_gfxPrimitives.h>
 
 void init_lose_screen(void);
 void update_lose_screen(void);

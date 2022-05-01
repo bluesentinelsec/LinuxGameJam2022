@@ -15,9 +15,6 @@
 */
 
 #include "input.h"
-#include "SDL2/SDL.h"
-#include "sceneManager.h"
-#include <SDL2/SDL_events.h>
 
 extern bool game_should_run;
 
