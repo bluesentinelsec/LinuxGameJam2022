@@ -67,6 +67,8 @@ bool Init_Game(void)
 
     check(game_window->renderer_p != NULL, "Unable to create SDL renderer: %s", SDL_GetError());
 
+    SDL_RenderSetLogicalSize(game_window->renderer_p, width, height);
+    
     Init_Scene_Manager();
 
     return true;
@@ -168,7 +170,7 @@ SDL_Window *create_SDL_window(struct GameWindow *game_window)
     else // not full screen
     {
         sdl_window = SDL_CreateWindow(game_window->window_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                                      game_window->window_width, game_window->window_height, SDL_WINDOW_SHOWN);
+                                      game_window->window_width, game_window->window_height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     }
     SDL_ShowCursor(SDL_DISABLE);
     return sdl_window;
