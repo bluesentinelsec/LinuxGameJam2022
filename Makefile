@@ -40,7 +40,6 @@ WIN_FLAGS = -w -Wl,-subsystem,windows -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -
 windows:
 	mkdir -p windows/LibertySpaceBattle_windowsx64
 	$(WIN_CC) -o $(WIN_EXE) $(SOURCES) $(WIN_FLAGS)
-	mv liberty_space_battle.exe windows/LibertySpaceBattle_windowsx64/
 	cp windows/runtime_libraries_x64/* windows/LibertySpaceBattle_windowsx64/
 	cp -R media/ windows/LibertySpaceBattle_windowsx64/
 	cp LICENSE windows/LibertySpaceBattle_windowsx64/

@@ -44,6 +44,23 @@ The Windows OS build ships with needed dependencies.
 
 You should only have to double click "liberty_space_battle.exe"
 
+**MacOS**
+
+Download and unzip Liberty Space Battle.
+
+Open a terminal and run the following commands:
+
+```bash
+cd LibertySpaceBattle
+chmod 755 install_mac_dependencies.sh
+./install_dependencies.sh
+```
+
+Now run the game:
+
+```bash
+./liberty_space_battle
+```
 
 ## Build program from source code
 
