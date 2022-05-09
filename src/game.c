@@ -164,12 +164,12 @@ SDL_Window *create_SDL_window(struct GameWindow *game_window)
     SDL_Window *sdl_window = NULL;
     if (game_window->window_is_fullscreen)
     {
-        sdl_window = SDL_CreateWindow(game_window->window_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                                      game_window->window_width, game_window->window_height, SDL_WINDOW_FULLSCREEN);
+        sdl_window = SDL_CreateWindow(game_window->window_title, 0, 0,
+                                      game_window->window_width, game_window->window_height, SDL_WINDOW_FULLSCREEN_DESKTOP);
     }
     else // not full screen
     {
-        sdl_window = SDL_CreateWindow(game_window->window_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+        sdl_window = SDL_CreateWindow(game_window->window_title, 0, 0,
                                       game_window->window_width, game_window->window_height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     }
     SDL_ShowCursor(SDL_DISABLE);
